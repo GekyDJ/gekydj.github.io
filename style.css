@@ -19,14 +19,14 @@ section {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
     border: 8px solid transparent;
-    transform-origin: bottom center;
-    animation: animate 4s ease-in-out infinite;
+    transform-origin: bottom center; /* CAMBIO: Da 'linear' a 'ease-in-out' e 4 secondi */
+    animation: animate 4s ease-in-out infinite; 
 }
 
 @keyframes animate {
     0%, 100% { transform: rotate(0deg); }
-    25% { transform: rotate(8deg); } /* Inclinazione ridotta per realismo */
-    75% { transform: rotate(-8deg); }
+    25% { transform: rotate(10deg); } /* Movimento più contenuto */
+    75% { transform: rotate(-10deg); }
     50% { transform: rotate(0deg); }
 }
 
@@ -65,14 +65,14 @@ section {
     border-bottom-left-radius: 150px;
     border-bottom-right-radius: 150px;
     filter: drop-shadow(0 0 80px #41c1fb);
-    transform-origin: top center;
+    transform-origin: top center; /* CAMBIO: 'ease-in-out' rende il liquido fluido, non meccanico */
     animation: animateLiquid 4s ease-in-out infinite;
 }
 
 @keyframes animateLiquid {
     0%, 100% { transform: rotate(0deg); }
-    25% { transform: rotate(-12deg); } /* Il liquido si oppone al movimento */
-    75% { transform: rotate(12deg); }
+    25% { transform: rotate(-15deg); } /* Il liquido si sposta verso l'alto */
+    75% { transform: rotate(15deg); }
     50% { transform: rotate(0deg); }
 }
 
@@ -97,4 +97,5 @@ section {
     background: rgba(0, 0, 0, 0.5);
     border-radius: 50%;
 }
+
 
