@@ -33,7 +33,7 @@
             bubble.style.left = (Math.random() * 80 + 10) + '%';
             
             // 5. VELOCITÀ CASUALE (ci metteranno tra 1.5 e 3 secondi a salire)
-            let duration = Math.random() * 2 + 2;
+            let duration = Math.random() * 2 + 0.5;
             bubble.style.animationDuration = duration + 's';
             
             // 6. Metti la bolla nella ciotola!
@@ -46,9 +46,10 @@
         }
 
         // Fai partire la funzione e spara una bolla nuova ogni 150 millisecondi (0.15 secondi)!
-        setInterval(createBubble, 2000);
+        setInterval(createBubble, 20);
     </script>
   
 </body>
+
 
 
