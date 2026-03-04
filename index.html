@@ -10,8 +10,43 @@
 <body>
   <section>
     <div class="shadow"></div>
-    <div class="bowl">
+    <div class="bowl" id="bowl-container">
       <div class="liquid"></div>
     </div>
   </section>
+
+  <script>
+        function createBubble() {
+            // 1. Trova la ciotola
+            const container = document.getElementById('bowl-container');
+            
+            // 2. Crea una nuova bollicina dal nulla
+            const bubble = document.createElement('span');
+            bubble.classList.add('bubble');
+            
+            // 3. DIMENSIONE CASUALE (tra 5 e 15 pixel)
+            let size = Math.random() * 10 + 5; 
+            bubble.style.width = size + 'px';
+            bubble.style.height = size + 'px';
+            
+            // 4. POSIZIONE CASUALE (spostata a destra o a sinistra)
+            bubble.style.left = (Math.random() * 80 + 10) + '%';
+            
+            // 5. VELOCITÀ CASUALE (ci metteranno tra 1.5 e 3 secondi a salire)
+            let duration = Math.random() * 1.5 + 1.5;
+            bubble.style.animationDuration = duration + 's';
+            
+            // 6. Metti la bolla nella ciotola!
+            container.appendChild(bubble);
+            
+            // 7. FONDAMENTALE: Elimina la bolla quando scompare, altrimenti il PC si blocca!
+            setTimeout(() => {
+                bubble.remove();
+            }, duration * 1000);
+        }
+
+        // Fai partire la funzione e spara una bolla nuova ogni 150 millisecondi (0.15 secondi)!
+        setInterval(createBubble, 150);
+    </script>
+  
 </body>
