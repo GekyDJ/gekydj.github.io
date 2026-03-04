@@ -124,24 +124,24 @@ section {
     position: absolute;
     top: 50%;  /* La mettiamo al centro della pagina... */
     left: 50%;
-    transform: translate(-50%, 150px); /* ...e la spingiamo 150px in basso, sotto la ciotola! */
+    transform: translate(-50%, 170px); /* ...e la spingiamo 150px in basso, sotto la ciotola! */
     width: 300px;
     height: 30px;
     background: rgba(65, 193, 251, 0.4); 
     border-radius: 50%;
     filter: blur(15px);
-    z-index: 0; /* La tiene dietro la ciotola */
+    z-index: -1; /* La tiene dietro la ciotola */
     animation: shadowPulse 2.5s ease-in-out infinite, shadowColor 5s linear infinite;
 }
 
 /* Animazione 1: Il Respiro (Grandezza e Opacità) */
 @keyframes shadowPulse {
     0%, 100% {
-        transform: translate(-50%, -50%) scale(1);
+        transform: translate(-50%, 170px) scale(1);
         opacity: 0.8; 
     }
     50% {
-        transform: translate(-50%, -50%) scale(0.8); 
+        transform: translate(-50%, 170px) scale(0.8); 
         opacity: 0.3; 
     }
 }
@@ -178,6 +178,7 @@ section {
         opacity: 0;
     }
 }
+
 
 
 
