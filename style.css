@@ -20,8 +20,7 @@ section {
     border-radius: 50%;
     border: 8px solid transparent;
     transform-origin: bottom center;
-    /* Usiamo linear per evitare che si fermi di scatto agli apici */
-    animation: animate 5s linear infinite; 
+    animation: animate 5s linear infinite;
 }
 
 @keyframes animate {
@@ -30,13 +29,13 @@ section {
         transform: rotate(0deg);
     }
     25% {
-        transform: rotate(10deg); /* Abbassato da 15 a 10 per renderlo più dolce */
+        transform: rotate(15deg);
     }
     50% {
         transform: rotate(0deg);
     }
     75% {
-        transform: rotate(-10deg); /* Abbassato da 15 a 10 */
+        transform: rotate(-15deg);
     }
     100% {
         filter: hue-rotate(360deg);
@@ -88,13 +87,13 @@ section {
         transform: rotate(0deg);
     }
     25% {
-        transform: rotate(-12deg); /* Leggermente opposto alla ciotola */
+        transform: rotate(-20deg);
     }
     50% {
         transform: rotate(0deg);
     }
     75% {
-        transform: rotate(12deg);
+        transform: rotate(20deg);
     }
     100% {
         transform: rotate(0deg);
