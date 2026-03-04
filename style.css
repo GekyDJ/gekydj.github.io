@@ -10,7 +10,7 @@ section {
     align-items: center;
     min-height: 100vh;
     background-color: black;
-    position: relative; /* Fondamentale per tenere ferma l'ombra */
+    position: relative;
 }
 
 /* --- LA CIOTOLA --- */
@@ -22,8 +22,8 @@ section {
     border-radius: 50%;
     border: 8px solid transparent;
     transform-origin: bottom center;
-    animation: animate 5s linear infinite;
-    z-index: 2; /* Tiene la ciotola in primo piano */
+    animation: animate 10s linear infinite;
+    z-index: 2;
 }
 
 @keyframes animate {
@@ -71,7 +71,7 @@ section {
     border-bottom-right-radius: 150px;
     filter: drop-shadow(0 0 80px #41c1fb);
     transform-origin: top center;
-    animation: animateLiquid 5s linear infinite;
+    animation: animateLiquid 10s linear infinite;
 }
 
 @keyframes animateLiquid {
@@ -91,31 +91,6 @@ section {
     background: #41c1fb;
     border-radius: 50%;
     filter: drop-shadow(0 0 80px #41c1fb);
-}
-
-/* --- L'OMBRA (Riflesso luminoso sul pavimento) --- */
-.shadow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, 150px); /* 150px la spinge esattamente sotto la ciotola */
-    width: 260px;
-    height: 40px;
-    background: rgba(65, 193, 251, 0.4); 
-    border-radius: 50%;
-    filter: blur(20px);
-    z-index: 1; /* Sta sotto la ciotola (che è z-index: 2) ma sopra lo sfondo */
-    animation: shadowPulse 2.5s ease-in-out infinite, shadowColor 5s linear infinite;
-}
-
-@keyframes shadowPulse {
-    0%, 100% { transform: translate(-50%, 150px) scale(1); opacity: 0.8; }
-    50% { transform: translate(-50%, 150px) scale(0.8); opacity: 0.3; }
-}
-
-@keyframes shadowColor {
-    0% { filter: blur(20px) hue-rotate(0deg); }
-    100% { filter: blur(20px) hue-rotate(360deg); }
 }
 
 /* --- LE BOLLICINE --- */
