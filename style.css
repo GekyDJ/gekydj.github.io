@@ -10,6 +10,7 @@ section {
     align-items: center;
     min-height: 100vh;
     background-color: black;
+    position: relative;
 }
 
 .bowl {
@@ -121,16 +122,15 @@ section {
 
 .shadow {
     position: absolute;
-    top: calc(-50% + 150px); 
+    top: 50%;  /* La mettiamo al centro della pagina... */
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 150px); /* ...e la spingiamo 150px in basso, sotto la ciotola! */
     width: 300px;
     height: 30px;
     background: rgba(65, 193, 251, 0.4); 
     border-radius: 50%;
-    /* TRUCCO: Colleghiamo DUE animazioni! 
-       La prima (shadowPulse) gestisce il respiro.
-       La seconda (shadowColor) gira i colori in sincrono con la ciotola (5 secondi). */
+    filter: blur(15px);
+    z-index: 0; /* La tiene dietro la ciotola */
     animation: shadowPulse 2.5s ease-in-out infinite, shadowColor 5s linear infinite;
 }
 
@@ -178,5 +178,6 @@ section {
         opacity: 0;
     }
 }
+
 
 
