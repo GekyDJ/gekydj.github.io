@@ -24,8 +24,8 @@
             const bubble = document.createElement('span');
             bubble.classList.add('bubble');
             
-            // 3. DIMENSIONE CASUALE (Particolato molto piccolo: tra 3 e 7 pixel)
-            let size = Math.random() * 4 + 3; 
+            // DIMENSIONE CASUALE: da 4 a 15 pixel
+            let size = Math.random() * 11 + 4; 
             bubble.style.width = size + 'px';
             bubble.style.height = size + 'px';
             
@@ -45,11 +45,12 @@
             }, duration * 1000);
         }
 
-        // Fai partire una bollicina ogni 400 millisecondi (gorgoglio lento)
-        setInterval(createBubble, 400);
+        // Fai partire una bollicina ogni 180 millisecondi (frequenza media perfetta)
+        setInterval(createBubble, 200);
     </script>
   
 </body>
+
 
 
 
