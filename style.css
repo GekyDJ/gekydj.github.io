@@ -82,7 +82,7 @@ section {
     background: #41c1fb;
     border-bottom-left-radius: 150px;
     border-bottom-right-radius: 150px;
-    filter: drop-shadow(0 0 40px #41c1fb); /*filter: drop-shadow(0 0 80px #41c1fb);*/
+    filter: drop-shadow(0 0 80px #41c1fb);
     transform-origin: top center;
     animation: animateLiquid 10s linear infinite;
 }
@@ -117,7 +117,7 @@ section {
     height: 20px;
     background: #41c1fb;
     border-radius: 50%;
-    filter: drop-shadow(0 0 40px #41c1fb); /*filter: drop-shadow(0 0 80px #41c1fb);*/
+    filter: drop-shadow(0 0 80px #41c1fb);
 }
 
 .shadow {
@@ -131,4 +131,5 @@ section {
     border-radius: 50%;
 
 }
+
 
