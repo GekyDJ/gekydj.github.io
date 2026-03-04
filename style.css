@@ -130,3 +130,25 @@ section {
     border-radius: 50%;
 }
 
+/* --- EFFETTO BOLLICINE / SCHIZZI --- */
+.bubble {
+    position: absolute;
+    background: #41c1fb; /* Stesso colore del liquido */
+    border-radius: 50%;
+    filter: drop-shadow(0 0 10px #41c1fb);
+    bottom: 50%; /* Le facciamo partire dalla superficie del liquido */
+    z-index: 10;
+    /* L'animazione per farle salire */
+    animation: rise linear forwards; 
+}
+
+@keyframes rise {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-120px) scale(0); /* Salgono di 120px, si rimpiccioliscono e svaniscono */
+        opacity: 0;
+    }
+}
