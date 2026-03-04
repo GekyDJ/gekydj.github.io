@@ -86,13 +86,15 @@ section {
 .liquid::before {
     content: '';
     position: absolute;
+    /* IL TRUCCO DELLA GUARNIZIONE: Allarghiamo i bordi per coprire i buchi neri */
+    width: 104%; 
+    left: -2%;   
     top: -10px;
-    width: 100%;
     height: 20px;
     background: #41c1fb;
     border-radius: 50%;
     filter: drop-shadow(0 0 80px #41c1fb);
-    animation: animateWaves 5s ease-in-out infinite;
+    animation: animateWaves 4s ease-in-out infinite; 
 }
 
 @keyframes animateWaves {
@@ -100,29 +102,26 @@ section {
         height: 20px;
         top: -10px;
         border-radius: 50%;
-        transform: rotate(0deg);
     }
     25% {
-        /* L'onda si alza a sinistra: aumentiamo l'altezza e incliniamo l'ovale! */
+        /* Si gonfia a sinistra, ma resta attaccata ai bordi */
         height: 24px;      
         top: -12px;        
-        border-radius: 40% 60% 50% 50%; /* Deformazione marcata (tutto pari) */
-        transform: rotate(-4deg); /* Inclina la superficie */
+        border-radius: 40% 60% 50% 50%; 
     }
     50% {
         height: 20px;
         top: -10px;
         border-radius: 50%;
-        transform: rotate(0deg);
     }
     75% {
-        /* L'onda si sposta a destra */
+        /* Si gonfia a destra, senza staccarsi */
         height: 24px;      
         top: -12px;
         border-radius: 60% 40% 50% 50%; 
-        transform: rotate(4deg); /* Inclina dall'altra parte */
     }
 }
+
 /* --- LE BOLLICINE --- */
 .bubble {
     position: absolute;
@@ -138,6 +137,7 @@ section {
     0% { transform: translateY(0) scale(1); opacity: 0.8; }
     100% { transform: translateY(-60px) scale(0); opacity: 0; }
 }
+
 
 
 
