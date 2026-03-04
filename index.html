@@ -24,16 +24,16 @@
             const bubble = document.createElement('span');
             bubble.classList.add('bubble');
             
-            // 3. DIMENSIONE CASUALE (tra 5 e 15 pixel)
-            let size = Math.random() * 10 + 5; 
+            // 3. DIMENSIONE CASUALE (Particolato molto piccolo: tra 3 e 7 pixel)
+            let size = Math.random() * 4 + 3; 
             bubble.style.width = size + 'px';
             bubble.style.height = size + 'px';
             
             // 4. POSIZIONE CASUALE (spostata a destra o a sinistra)
             bubble.style.left = (Math.random() * 80 + 10) + '%';
             
-            // 5. VELOCITÀ CASUALE (ci metteranno tra 1.5 e 3 secondi a salire)
-            let duration = Math.random() * 1.5 + 1.5;
+            // 5. VELOCITÀ CASUALE (Movimento lento e denso: ci mettono dai 2 ai 4 secondi)
+            let duration = Math.random() * 2 + 2;
             bubble.style.animationDuration = duration + 's';
             
             // 6. Metti la bolla nella ciotola!
@@ -45,11 +45,12 @@
             }, duration * 1000);
         }
 
-        // Fai partire la funzione e spara una bolla nuova ogni 150 millisecondi (0.15 secondi)!
-        setInterval(createBubble, 150);
+        // Fai partire una bollicina ogni 400 millisecondi (gorgoglio lento)
+        setInterval(createBubble, 400);
     </script>
   
 </body>
+
 
 
 
