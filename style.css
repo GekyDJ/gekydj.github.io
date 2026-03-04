@@ -93,7 +93,7 @@ section {
     background: #41c1fb;
     border-radius: 50%;
     filter: drop-shadow(0 0 80px #41c1fb);
-    animation: animateWaves 4s ease-in-out infinite; 
+    animation: animateWaves 10s linear infinite; 
 }
 
 @keyframes animateWaves {
@@ -101,33 +101,28 @@ section {
         height: 20px;
         top: -10px;
         border-radius: 50%;
-        transform: rotate(0deg);
     }
     25% {
-        /* Onda morbida a sinistra */
+        /* A 2,5s il liquido pende a sinistra (-18deg). L'onda si gonfia a SINISTRA! */
         height: 22px;      
-        top: -12px;        
-        border-radius: 40% 60% 50% 50%; 
-        transform: rotate(-2deg); /* Inclinazione minima e pari! */
+        top: -11px;        
+        border-radius: 30% 70% 50% 50%; /* Gonfia a sinistra, appiattisce a destra */
     }
     50% {
         height: 20px;
         top: -10px;
         border-radius: 50%;
-        transform: rotate(0deg);
     }
     75% {
-        /* Onda morbida a destra */
+        /* A 7,5s il liquido pende a destra (+18deg). L'onda si gonfia a DESTRA! */
         height: 22px;      
-        top: -12px;
-        border-radius: 60% 40% 50% 50%; 
-        transform: rotate(2deg); /* Inclinazione minima e pari! */
+        top: -11px;
+        border-radius: 70% 30% 50% 50%; /* Gonfia a destra, appiattisce a sinistra */
     }
     100% {
         height: 20px;
         top: -10px;
         border-radius: 50%;
-        transform: rotate(0deg);
     }
 }
 
@@ -146,6 +141,7 @@ section {
     0% { transform: translateY(0) scale(1); opacity: 0.8; }
     100% { transform: translateY(-60px) scale(0); opacity: 0; }
 }
+
 
 
 
