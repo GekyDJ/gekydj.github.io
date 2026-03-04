@@ -10,10 +10,8 @@ section {
     align-items: center;
     min-height: 100vh;
     background-color: black;
-    overflow: hidden; /* Evita barre di scorrimento se le onde escono */
 }
 
-/* La Boccia di Vetro */
 .bowl {
     position: relative;
     width: 300px;
@@ -22,14 +20,53 @@ section {
     border-radius: 50%;
     border: 8px solid transparent;
     transform-origin: bottom center;
-    /* Movimento molto più dolce */
-    animation: animateBowl 6s ease-in-out infinite;
+    /* Usiamo linear per evitare che si fermi di scatto agli apici */
+    animation: animate 5s linear infinite; 
 }
 
-@keyframes animateBowl {
-    0%, 100% { transform: rotate(0deg); }
-    25% { transform: rotate(5deg); } /* Solo 5 gradi per non schiacciare i bordi */
-    75% { transform: rotate(-5deg); }
+@keyframes animate {
+    0% {
+        filter: hue-rotate(0deg);
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(10deg); /* Abbassato da 15 a 10 per renderlo più dolce */
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+    75% {
+        transform: rotate(-10deg); /* Abbassato da 15 a 10 */
+    }
+    100% {
+        filter: hue-rotate(360deg);
+        transform: rotate(0deg);
+    }
+}
+
+.bowl::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    height: 30px;
+    border: 15px solid #444;
+    border-radius: 50%;
+    box-shadow: 0 10px #222;
+}
+
+.bowl::after {
+    content: '';
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    width: 150px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .liquid {
@@ -41,63 +78,47 @@ section {
     background: #41c1fb;
     border-bottom-left-radius: 150px;
     border-bottom-right-radius: 150px;
-    filter: drop-shadow(0 0 30px #41c1fb);
+    filter: drop-shadow(0 0 80px #41c1fb);
     transform-origin: top center;
-    /* L'overflow hidden è fondamentale per le onde */
-    overflow: hidden; 
-    animation: animateLiquid 6s ease-in-out infinite;
+    animation: animateLiquid 5s linear infinite;
 }
 
 @keyframes animateLiquid {
-    0%, 100% { transform: rotate(0deg) translateX(0); }
-    25% { transform: rotate(-7deg) translateX(-5px); } /* Bilancia la rotazione */
-    75% { transform: rotate(7deg) translateX(5px); }
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-12deg); /* Leggermente opposto alla ciotola */
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+    75% {
+        transform: rotate(12deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
 }
-
-/* --- LE ONDE CALIBRATE --- */
 
 .liquid::before {
     content: '';
     position: absolute;
-    /* Posizionate esattamente sulla superficie */
-    top: -115px; 
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: rgba(255, 255, 255, 0.2); /* Riflesso bianco dell'acqua */
-    border-radius: 40%;
-    /* Rotazione lenta per non creare caos */
-    animation: waves 8s linear infinite;
+    top: -10px;
+    width: 100%;
+    height: 20px;
+    background: #41c1fb;
+    border-radius: 50%;
+    filter: drop-shadow(0 0 80px #41c1fb);
 }
 
-/* Se vuoi una seconda onda più scura */
-.liquid::after {
-    content: '';
-    position: absolute;
-    top: -110px;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: rgba(0, 0, 0, 0.1); /* Ombra dell'increspatura */
-    border-radius: 35%;
-    animation: waves 4s linear infinite;
-}
-
-@keyframes waves {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Ombra a terra (statica) */
 .shadow {
     position: absolute;
-    top: calc(50% + 150px);
+    top: calc(-50% + 150px);
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 260px;
+    width: 300px;
     height: 30px;
     background: rgba(0, 0, 0, 0.5);
     border-radius: 50%;
-    filter: blur(5px);
 }
-
