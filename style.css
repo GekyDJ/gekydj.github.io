@@ -109,29 +109,34 @@ section {
     background: #41c1fb;
     border-radius: 50%;
     filter: drop-shadow(0 0 80px #41c1fb);
-    animation: animateSurface 3s ease-in-out infinite;
+    animation: animateSurface 1.5s ease-in-out infinite;
 }
 
 @keyframes animateSurface {
-    0%, 100% {
+    0% {
         border-radius: 50%;
         height: 20px;
-        transform: translateY(0) rotate(0deg);
+        transform: translateY(0) rotate(0deg) scale(1);
     }
     25% {
-        border-radius: 45% 55% 48% 52%; /* Deforma i 4 angoli in modo asimmetrico */
-        height: 24px; /* Si alza leggermente */
-        transform: translateY(-2px) rotate(2deg); /* Si inclina e si sposta */
+        border-radius: 35% 65% 45% 55%; /* Deformazione molto più netta */
+        height: 45px; /* Si alza tantissimo (da 20 a 45!) */
+        transform: translateY(-8px) rotate(6deg) scale(1.05); /* Si inclina molto di più */
     }
     50% {
-        border-radius: 55% 45% 52% 48%;
-        height: 18px; /* Si abbassa */
-        transform: translateY(2px) rotate(-2deg);
+        border-radius: 65% 35% 55% 45%;
+        height: 15px; /* Si schiaccia */
+        transform: translateY(8px) rotate(-6deg) scale(0.95);
     }
     75% {
-        border-radius: 48% 52% 55% 45%;
-        height: 22px;
-        transform: translateY(-1px) rotate(1deg);
+        border-radius: 45% 55% 35% 65%;
+        height: 40px;
+        transform: translateY(-4px) rotate(4deg) scale(1.02);
+    }
+    100% {
+        border-radius: 50%;
+        height: 20px;
+        transform: translateY(0) rotate(0deg) scale(1);
     }
 }
 
@@ -145,5 +150,6 @@ section {
     background: rgba(0, 0, 0, 0.5);
     border-radius: 50%;
 }
+
 
 
