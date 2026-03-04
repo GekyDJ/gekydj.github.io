@@ -92,6 +92,32 @@ section {
     background: #41c1fb;
     border-radius: 50%;
     filter: drop-shadow(0 0 80px #41c1fb);
+    animation: animateWaves 5s ease-in-out infinite;
+}
+
+@keyframes miniWaves {
+    0%, 100% {
+        height: 20px;
+        top: -10px;
+        border-radius: 50%;
+    }
+    25% {
+        /* L'acqua si increspa verso l'alto a sinistra */
+        height: 22px;      
+        top: -12px;        
+        border-radius: 52% 48% 50% 50%; 
+    }
+    50% {
+        height: 20px;
+        top: -10px;
+        border-radius: 50%;
+    }
+    75% {
+        /* L'acqua si increspa verso il basso a destra */
+        height: 18px;      
+        top: -8px;
+        border-radius: 48% 52% 50% 50%;
+    }
 }
 
 /* --- LE BOLLICINE --- */
@@ -109,6 +135,7 @@ section {
     0% { transform: translateY(0) scale(1); opacity: 0.8; }
     100% { transform: translateY(-60px) scale(0); opacity: 0; }
 }
+
 
 
 
