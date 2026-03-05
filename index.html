@@ -17,6 +17,9 @@
     </section>
 
     <script>
+        document.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+        }, { passive: false });
         function createBubble() {
             const container = document.getElementById('bowl-container');
             const bubble = document.createElement('span');
@@ -51,3 +54,4 @@
 </body>
 
 </html>
+
