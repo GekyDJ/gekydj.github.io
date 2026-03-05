@@ -22,9 +22,8 @@ Original concept and tutorial by [Online Tutorials]() - [video link](https://www
 
 This repository is open source: feel free to use, modify, and share this code!
 
-## How to run locally
+## 🛠️ How to run locally
 
 1. Clone the repository:
-   ```bash
-   git clone [https://github.com/gekydj/magic-bowl.git(https://github.com/gekydj/magic-bowl.git)
-2. Open index.html in your browser.
+```bash
+git clone [https://github.com/gekydj/magic-bowl.git](https://github.com/gekydj/magic-bowl.git)
