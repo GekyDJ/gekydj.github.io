@@ -27,6 +27,7 @@ section {
     width: 100vw;
     height: 100vh;
     position: relative;
+    z-index: 1
 }
 
 /*CIOTOLA*/
@@ -46,7 +47,7 @@ section {
     touch-action: none;
     user-select: none;
     -webkit-user-drag: none;
-    z-index: 2;
+    z-index: 3;
 }
 
 @keyframes animateBowl {
@@ -121,13 +122,15 @@ section {
 
 .shadow {
     position: absolute;
-    top: calc(50% + 160px);
+    top: calc(50% + 38vw);
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 80%;
-    height: 30px;
-    background: rgba(0, 0, 0, 0.5);
+    width: 60vw;
+    height: 4vh;
+    background: rgba(0, 0, 0, 0.6);
     border-radius: 50%;
+    filter: blur(5px);
+    z-index: 2;
 }
 
 /*BOLLE*/
@@ -146,6 +149,7 @@ section {
     0% { transform: translateY(0) scale(1); opacity: 0.8; }
     100% { transform: translateY(-60px) scale(0); opacity: 0; }
 }
+
 
 
 
