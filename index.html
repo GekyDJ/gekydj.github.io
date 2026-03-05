@@ -20,6 +20,19 @@
         document.addEventListener('touchmove', function(e) {
             e.preventDefault();
         }, { passive: false });
+
+        window.addEventListener('touchmove', function(e) {
+            if (e.cancelable) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        document.addEventListener('touchstart', function (event) {
+            if (event.touches.length > 1) {
+                event.preventDefault();
+            }
+        }, { passive: false });
+        
         function createBubble() {
             const container = document.getElementById('bowl-container');
             const bubble = document.createElement('span');
@@ -54,4 +67,5 @@
 </body>
 
 </html>
+
 
