@@ -28,4 +28,5 @@ Original concept and tutorial by [Online Tutorials]() - [video link](https://www
 * Implemented realistic sloshing physics.
 * Added mobile-responsive bubble logic.
 * Synchronized animation cycles for better performance.
+
 This repository is open source: feel free to use, modify, and share this code!
