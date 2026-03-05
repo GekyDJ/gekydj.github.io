@@ -21,3 +21,10 @@ Original concept and tutorial by [Online Tutorials]() - [https://www.youtube.com
 * Synchronized animation cycles for better performance.
 
 This repository is open source: feel free to use, modify, and share this code!
+
+## How to run locally
+
+1. Clone the repository:
+   ```bash
+   git clone [https://github.com/gekydj/magic-bowl.git](https://github.com/gekydj/magic-bowl.git)
+2. Open index.html in your browser.
