@@ -2,16 +2,17 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Colora l'interfaccia di Chrome/Safari su mobile per evitare il bianco -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#121212">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Magic Bowl</title>
+    <title>Glowing Liquid Bowl</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-    <!-- Il nuovo Wrapper che scala su mobile -->
+
     <div class="bowl-wrapper">
+        <div class="shadow"></div>
+        
         <div class="bowl">
             <div class="liquid">
                 <div class="bubbles"></div>
@@ -19,13 +20,12 @@
         </div>
     </div>
 
-    <!-- Script per le bollicine dinamiche -->
     <script>
         const bubblesContainer = document.querySelector('.bubbles');
 
         function createBubble() {
             const bubble = document.createElement('div');
-            bubble.classList.add('bubble');
+            bubble.classList.add('bubble'); 
 
             // Dimensioni casuali (tra 5px e 15px)
             const size = Math.random() * 10 + 5;
@@ -40,13 +40,13 @@
 
             bubblesContainer.appendChild(bubble);
 
-            // Rimuove la bolla quando l'animazione finisce
+            // Rimuove la bolla dopo 5 secondi
             setTimeout(() => {
                 bubble.remove();
             }, 5000);
         }
 
-        // Genera una bolla ogni 300 millisecondi
+        // Genera una nuova bolla ogni 300 millisecondi
         setInterval(createBubble, 300);
     </script>
 
