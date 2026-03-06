@@ -1,62 +1,92 @@
-/* --- SETUP BASE E BLOCCO SCHERMO --- */
-html, body {
+/* --- SETUP BASE E BLOCCO TOTALE DELLO SCHERMO --- */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
     width: 100vw;
     height: 100vh;
-    background-color: #121212; /* Sfondo scuro per far risaltare il glow */
+    background-color: #121212;
+    overflow: hidden; /* Niente barre di scorrimento */
+    touch-action: none; /* IMPEDISCE PINCH, ZOOM E PAN SU MOBILE */
+    user-select: none; /* Impedisce di selezionare elementi per sbaglio */
+    -webkit-user-select: none;
+}
+
+/* --- ANIMAZIONE CAMBIO COLORE (HUE ROTATE) --- */
+section {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* Mantiene la pagina fissa e impedisce lo scroll */
-    overscroll-behavior: none; /* Blocca l'effetto elastico bianco su mobile */
+    width: 100%;
+    height: 100%;
+    animation: animateColor 8s linear infinite;
 }
 
-/* --- IL WRAPPER (Il salvavita per i cellulari) --- */
+@keyframes animateColor {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+/* --- IL WRAPPER PER SCALARE SU MOBILE --- */
 .bowl-wrapper {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: transform 0.3s ease;
 }
 
 /* --- L'OMBRA SUL PAVIMENTO --- */
 .shadow {
     position: absolute;
-    bottom: -30px; 
+    top: calc(50% + 150px); /* Posizionata esattamente alla base della ciotola */
     left: 50%;
-    transform: translateX(-50%);
-    width: 260px; 
-    height: 40px; 
-    background: rgba(0, 0, 0, 0.5);
+    transform: translate(-50%, -50%);
+    width: 260px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.6);
     border-radius: 50%;
-    z-index: -1; 
-    filter: blur(4px); 
+    filter: blur(6px);
 }
 
-/* --- LA CIOTOLA (Dondola ma resta al centro) --- */
+/* --- LA CIOTOLA (Vetro e oscillazione) --- */
 .bowl {
     position: relative;
     width: 300px;
     height: 300px;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
     border: 8px solid transparent;
-    box-shadow: inset 0 0 0 8px rgba(255, 255, 255, 0.2);
     transform-origin: bottom center;
-    animation: animateBowl 10s linear infinite;
+    animation: animateBowl 5s linear infinite;
+}
+
+/* Il buco rialzato (Il bordo superiore del vetro) */
+.bowl::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 30px;
+    border: 15px solid #444; /* Colore del bordo del vetro */
+    border-radius: 50%;
+    box-shadow: 0 10px #222; /* Profondità del buco */
+    z-index: 15;
 }
 
 @keyframes animateBowl {
     0% { transform: rotate(0deg); }
-    25% { transform: rotate(16deg); }
+    25% { transform: rotate(15deg); }
     50% { transform: rotate(0deg); }
-    75% { transform: rotate(-16deg); }
+    75% { transform: rotate(-15deg); }
     100% { transform: rotate(0deg); }
 }
 
-/* --- IL LIQUIDO --- */
+/* --- IL LIQUIDO (Perfettamente dentro la ciotola) --- */
 .liquid {
     position: absolute;
     top: 50%;
@@ -64,60 +94,64 @@ html, body {
     right: 5px;
     bottom: 5px;
     background: #41c1fb;
-    border-radius: 0 0 150px 150px;
+    border-bottom-left-radius: 150px;
+    border-bottom-right-radius: 150px;
+    filter: drop-shadow(0 0 80px #41c1fb); /* Il glow del liquido */
     transform-origin: top center;
-    animation: animateLiquid 10s linear infinite;
+    animation: animateLiquid 5s linear infinite;
 }
 
-@keyframes animateLiquid {
-    0% { transform: rotate(0deg); }
-    25% { transform: rotate(-18deg); }
-    50% { transform: rotate(0deg); }
-    75% { transform: rotate(18deg); }
-    100% { transform: rotate(0deg); }
-}
-
-/* --- LA SUPERFICIE (Glow ed effetto 3D) --- */
+/* La superficie del liquido (Effetto 3D) */
 .liquid::before {
     content: '';
     position: absolute;
     top: -10px;
     width: 100%;
-    left: 0;
     height: 20px;
-    background: #1fa4e0; 
+    background: #1fa4e0;
     border-radius: 50%;
-    filter: drop-shadow(0 0 80px #41c1fb); /* Il bagliore al neon */
-    z-index: 5;
+    filter: drop-shadow(0 0 80px #41c1fb);
 }
 
-/* --- LE BOLLICINE --- */
-.bubbles {
+@keyframes animateLiquid {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(-15deg); } /* Compensa l'inclinazione della ciotola */
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(15deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* --- LE BOLLICINE (Salgono dal pelo dell'acqua nel vuoto) --- */
+.bubbles-container {
     position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 0 0 150px 150px;
-    overflow: hidden; /* Nasconde le bolle fuori dal liquido */
+    top: 0;
+    left: 5px;
+    right: 5px;
+    height: 50%; /* Occupa solo la metà superiore della ciotola */
+    border-top-left-radius: 150px;
+    border-top-right-radius: 150px;
+    overflow: hidden; /* Nasconde le bolle se escono dal vetro alto */
+    z-index: 10;
 }
 
 .bubble {
     position: absolute;
-    bottom: -20px;
-    background: rgba(255, 255, 255, 0.4);
+    bottom: -10px; /* Partono dal pelo dell'acqua */
+    background: rgba(255, 255, 255, 0.5);
     border-radius: 50%;
-    animation: rise linear forwards;
+    animation: riseSurface linear forwards;
 }
 
-@keyframes rise {
-    0% { transform: translateY(0); opacity: 1; }
-    100% { transform: translateY(-150px); opacity: 0; }
+@keyframes riseSurface {
+    0% { transform: translateY(0); opacity: 0; }
+    10% { opacity: 1; } /* Compaiono subito dal liquido */
+    70% { opacity: 1; }
+    100% { transform: translateY(-120px); opacity: 0; } /* Svaniscono prima di uscire */
 }
 
 /* --- RESPONSIVE DESIGN PER MOBILE --- */
 @media (max-width: 600px) {
     .bowl-wrapper {
-        /* Riduce la ciotola al 60% della dimensione per farla stare comoda nello schermo con margini di sicurezza */
-        transform: scale(0.60); 
+        transform: scale(0.65); /* Rimpicciolisce tutto per non tagliare i lati */
     }
 }
