@@ -17,35 +17,39 @@
 
     <script>
         function createBubble() {
+            // 1. Trova la ciotola
             const container = document.getElementById('bowl-container');
+            
+            // 2. Crea un nuovo elemento <span> (la bolla)
             const bubble = document.createElement('span');
             bubble.classList.add('bubble');
             
-            let minSize = 4;
-            let maxSize = 15;
-
-            // Adattamento per i cellulari
-            if (window.innerWidth < 768) {
-                minSize = 8;
-                maxSize = 24;
-            }
-
-            let size = Math.random() * (maxSize - minSize) + minSize; 
+            // 3. MATEMATICA CASUALE (La vera magia!)
+            // Grandezza casuale tra 5px e 15px
+            let size = Math.random() * 10 + 5; 
             bubble.style.width = size + 'px';
             bubble.style.height = size + 'px';
             
+            // Posizione orizzontale casuale (dal 10% al 90% della larghezza della ciotola)
             bubble.style.left = (Math.random() * 80 + 10) + '%';
+            
+            // Durata dell'animazione casuale (tra 2 e 4 secondi) per farle salire a velocità diverse
             let duration = Math.random() * 2 + 2;
             bubble.style.animationDuration = duration + 's';
             
+            // 4. Inserisci la bolla nella ciotola
             container.appendChild(bubble);
             
+            // 5. Elimina la bolla quando ha finito di salire, per non intasare la memoria del PC!
             setTimeout(() => {
                 bubble.remove();
             }, duration * 1000);
         }
 
-        setInterval(createBubble, 180);
+        // Fai partire la funzione createBubble ogni 300 millisecondi (0.3 secondi) all'infinito!
+        setInterval(createBubble, 300);
     </script>
 </body>
+</body>
 </html>
+
