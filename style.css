@@ -1,90 +1,62 @@
-* html, body{
+/* --- SETUP BASE E BLOCCO SCHERMO --- */
+html, body {
     margin: 0;
     padding: 0;
-    width: 100%;
-    height:100%
-    position: fixed;
-    overflow: hidden;
-    touch-action: none;
-    box-sizing: border-box;
-    background-color: #121212;
-    overscroll-behavior: none;
-}
-
-# game-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: 100vh;
-  position: relative;
-}
-
-section {
+    width: 100vw;
+    height: 100vh;
+    background-color: #121212; /* Sfondo scuro per far risaltare il glow */
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100vw;
-    height: 100vh;
-    position: relative;
-    z-index: 1
+    overflow: hidden; /* Mantiene la pagina fissa e impedisce lo scroll */
+    overscroll-behavior: none; /* Blocca l'effetto elastico bianco su mobile */
 }
 
-/*CIOTOLA*/
+/* --- IL WRAPPER (Il salvavita per i cellulari) --- */
+.bowl-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+/* --- L'OMBRA SUL PAVIMENTO --- */
+.shadow {
+    position: absolute;
+    bottom: -30px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 260px; 
+    height: 40px; 
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    z-index: -1; 
+    filter: blur(4px); 
+}
+
+/* --- LA CIOTOLA (Dondola ma resta al centro) --- */
 .bowl {
     position: relative;
-    width: 80vw;
-    min-width: 200px;
-    max-width: 300px;
-    height: 80vw;
-    min-height: 200px;
-    max-height: 300px;
-    background: rgba(255, 255, 255, 0.1);
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 50%;
     border: 8px solid transparent;
+    box-shadow: inset 0 0 0 8px rgba(255, 255, 255, 0.2);
     transform-origin: bottom center;
     animation: animateBowl 10s linear infinite;
-    touch-action: none;
-    user-select: none;
-    -webkit-user-drag: none;
-    z-index: 3;
 }
 
 @keyframes animateBowl {
-    0% { filter: hue-rotate(0deg); transform: rotate(0deg); }
-    25% { transform: rotate(16deg); } 
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(16deg); }
     50% { transform: rotate(0deg); }
-    75% { transform: rotate(-16deg); } 
-
-    100% { filter: hue-rotate(360deg); transform: rotate(0deg); }
+    75% { transform: rotate(-16deg); }
+    100% { transform: rotate(0deg); }
 }
 
-.bowl::before {
-    content: '';
-    position: absolute;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 40%;
-    height: 30px;
-    border: 15px solid #444;
-    border-radius: 50%;
-    box-shadow: 0 10px #222;
-}
-
-.bowl::after {
-    content: '';
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    width: 150px;
-    height: 80px;
-    background: rgba(255, 255, 255, 0.05);
-}
-
-/*LIQUIDO*/
+/* --- IL LIQUIDO --- */
 .liquid {
     position: absolute;
     top: 50%;
@@ -92,21 +64,20 @@ section {
     right: 5px;
     bottom: 5px;
     background: #41c1fb;
-    border-bottom-left-radius: 150px;
-    border-bottom-right-radius: 150px;
-    filter: drop-shadow(0 0 80px #41c1fb);
+    border-radius: 0 0 150px 150px;
     transform-origin: top center;
     animation: animateLiquid 10s linear infinite;
 }
 
 @keyframes animateLiquid {
     0% { transform: rotate(0deg); }
-    25% { transform: rotate(-18deg); } 
+    25% { transform: rotate(-18deg); }
     50% { transform: rotate(0deg); }
-    75% { transform: rotate(18deg); } 
+    75% { transform: rotate(18deg); }
     100% { transform: rotate(0deg); }
 }
 
+/* --- LA SUPERFICIE (Glow ed effetto 3D) --- */
 .liquid::before {
     content: '';
     position: absolute;
@@ -114,195 +85,39 @@ section {
     width: 100%;
     left: 0;
     height: 20px;
-    background: #1fa4e0;
+    background: #1fa4e0; 
     border-radius: 50%;
-    filter: drop-shadow(0 0 80px #41c1fb);
+    filter: drop-shadow(0 0 80px #41c1fb); /* Il bagliore al neon */
     z-index: 5;
-.shadow {
-    position: absolute;
-    /* La posizioniamo esattamente al centro della sezione */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    
-    /* Creiamo un'area grande quanto la ciotola */
-    width: 80vw; 
-    height: 80vw;
-    max-width: 300px;
-    max-height: 300px;
-    
-    /* Non le diamo un colore, ma usiamo un elemento interno (::after) 
-       per disegnare l'ombra proprio sul bordo inferiore */
-    pointer-events: none; /* Così non interferisce con i tocchi */
 }
 
-.shadow::after {
-    content: '';
+/* --- LE BOLLICINE --- */
+.bubbles {
     position: absolute;
-    bottom: -15px; /* Questo la tiene SEMPRE "attaccata" al fondo del cerchio */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%; /* Larghezza dell'ombra rispetto alla ciotola */
-    height: 40px;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 50%;
-    filter: blur(10px);
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0 0 150px 150px;
+    overflow: hidden; /* Nasconde le bolle fuori dal liquido */
 }
 
-/*BOLLE*/
 .bubble {
-
     position: absolute;
-    background: #41c1fb;
+    bottom: -20px;
+    background: rgba(255, 255, 255, 0.4);
     border-radius: 50%;
-    filter: drop-shadow(0 0 10px #41c1fb);
-    bottom: 50%;
-    z-index: 10;
-    animation: animateBubbles linear forwards; 
+    animation: rise linear forwards;
 }
 
-@keyframes animateBubbles {
-    0% { transform: translateY(0) scale(1); opacity: 0.8; }
-    100% { transform: translateY(-60px) scale(0); opacity: 0; }
+@keyframes rise {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-150px); opacity: 0; }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<style>
-        /* 1. SETUP BASE E ANTI-OVERSCROLL */
-        html, body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            background-color: #121212; /* Sfondo scuro uniforme */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overscroll-behavior: none; /* Blocca il "rimbalzo" bianco su mobile */
-            overflow: hidden; /* Impedisce barre di scorrimento accidentali */
-        }
-
-        /* 2. IL WRAPPER: Il trucco magico per rimpicciolire su mobile */
-        .bowl-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: transform 0.3s ease;
-        }
-
-        /* 3. LA CIOTOLA (Dondola a 16 gradi in 10s) */
-        .bowl {
-            position: relative;
-            width: 300px;
-            height: 300px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-            border: 8px solid transparent;
-            box-shadow: inset 0 0 0 8px rgba(255, 255, 255, 0.2);
-            transform-origin: bottom center;
-            animation: animateBowl 10s linear infinite;
-        }
-
-        @keyframes animateBowl {
-            0% { transform: rotate(0deg); }
-            25% { transform: rotate(16deg); }
-            50% { transform: rotate(0deg); }
-            75% { transform: rotate(-16deg); }
-            100% { transform: rotate(0deg); }
-        }
-
-        /* 4. IL CORPO DEL LIQUIDO (Compensa a 18 gradi) */
-        .liquid {
-            position: absolute;
-            top: 50%;
-            left: 5px;
-            right: 5px;
-            bottom: 5px;
-            background: #41c1fb;
-            border-radius: 0 0 150px 150px;
-            transform-origin: top center;
-            animation: animateLiquid 10s linear infinite;
-        }
-
-        @keyframes animateLiquid {
-            0% { transform: rotate(0deg); }
-            25% { transform: rotate(-18deg); }
-            50% { transform: rotate(0deg); }
-            75% { transform: rotate(18deg); }
-            100% { transform: rotate(0deg); }
-        }
-
-        /* 5. LA SUPERFICIE DEL LIQUIDO (Effetto 3D e Ombra) */
-        .liquid::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            width: 100%;
-            left: 0;
-            height: 20px;
-            background: #1fa4e0; /* Colore più scuro per profondità */
-            border-radius: 50%;
-            filter: drop-shadow(0 0 80px #41c1fb); /* Il bagliore al neon */
-            z-index: 5;
-        }
-
-        /* 6. LE BOLLICINE */
-        .bubbles {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 0 0 150px 150px;
-            overflow: hidden; /* Mantiene le bolle dentro il liquido */
-        }
-
-        .bubble {
-            position: absolute;
-            bottom: -20px;
-            background: rgba(255, 255, 255, 0.4);
-            border-radius: 50%;
-            animation: rise linear forwards;
-        }
-
-        @keyframes rise {
-            0% { transform: translateY(0); opacity: 1; }
-            100% { transform: translateY(-150px); opacity: 0; }
-        }
-
-        /* 7. RESPONSIVE DESIGN (Il vero fix per i cellulari) */
-        @media (max-width: 600px) {
-            .bowl-wrapper {
-                /* Riduce tutto il blocco al 65% della dimensione originale! */
-                transform: scale(0.65); 
-            }
-        }
-    </style>
-
-
-
-
-
-
-
+/* --- RESPONSIVE DESIGN PER MOBILE --- */
+@media (max-width: 600px) {
+    .bowl-wrapper {
+        /* Riduce la ciotola al 60% della dimensione per farla stare comoda nello schermo con margini di sicurezza */
+        transform: scale(0.60); 
+    }
+}
