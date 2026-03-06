@@ -122,3 +122,28 @@ section {
     border-radius: 50%;
 }
 
+/* Stile base della bollicina */
+.bubble {
+    position: absolute;
+    background: #41c1fb; /* Cambialo in rosso/arancione se fai la lava! */
+    border-radius: 50%;
+    filter: drop-shadow(0 0 10px #41c1fb); /* Bagliore della bolla */
+    bottom: 50%; /* Partono dalla superficie del liquido */
+    z-index: 10;
+    /* L'animazione 'rise' farà salire la bolla, i secondi li deciderà JS! */
+    animation: rise linear forwards; 
+}
+
+/* L'animazione di salita ed esplosione */
+@keyframes rise {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) scale(0); /* Sale, si rimpicciolisce e sparisce */
+        opacity: 0;
+    }
+}
+
+
