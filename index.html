@@ -2,23 +2,25 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <!-- Blocco totale di zoom e pinch -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Blocco totale di zoom, pinch e spostamento su schermi touch -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <meta name="theme-color" content="#121212">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Glowing Liquid Bowl</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Section gestisce il cambio colore (hue-rotate) per tutta la scena -->
+    <!-- La Section applica il cambio di colore (Hue Rotate) a TUTTO ciò che contiene -->
     <section>
-        <!-- Wrapper usato per mantenere le proporzioni su mobile -->
         <div class="bowl-wrapper">
+            <!-- L'ombra sul pavimento -->
             <div class="shadow"></div>
             
             <div class="bowl">
+                <!-- Il liquido che riempie la metà inferiore -->
                 <div class="liquid"></div>
-                <!-- Il contenitore delle bolle sta nella metà superiore -->
+                <!-- Le bolle che partono dalla superficie -->
                 <div class="bubbles-container"></div>
             </div>
         </div>
@@ -31,20 +33,23 @@
             const bubble = document.createElement('div');
             bubble.classList.add('bubble'); 
 
-            // Dimensioni e posizioni casuali
-            const size = Math.random() * 8 + 4;
+            // Dimensioni casuali
+            const size = Math.random() * 6 + 4;
             bubble.style.width = `${size}px`;
             bubble.style.height = `${size}px`;
-            bubble.style.left = `${Math.random() * 70 + 15}%`; // Centrate
+
+            // Posizione orizzontale casuale (lontano dai bordi estremi)
+            bubble.style.left = `${Math.random() * 80 + 10}%`; 
 
             // Velocità di salita
-            bubble.style.animationDuration = `${Math.random() * 2 + 3}s`;
+            bubble.style.animationDuration = `${Math.random() * 2 + 2}s`;
 
             bubblesContainer.appendChild(bubble);
 
+            // Elimina la bolla dopo 4 secondi
             setTimeout(() => {
                 bubble.remove();
-            }, 5000);
+            }, 4000);
         }
 
         setInterval(createBubble, 300);
