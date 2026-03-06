@@ -172,3 +172,137 @@ section {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+        /* 1. SETUP BASE E ANTI-OVERSCROLL */
+        html, body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background-color: #121212; /* Sfondo scuro uniforme */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overscroll-behavior: none; /* Blocca il "rimbalzo" bianco su mobile */
+            overflow: hidden; /* Impedisce barre di scorrimento accidentali */
+        }
+
+        /* 2. IL WRAPPER: Il trucco magico per rimpicciolire su mobile */
+        .bowl-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        /* 3. LA CIOTOLA (Dondola a 16 gradi in 10s) */
+        .bowl {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            border: 8px solid transparent;
+            box-shadow: inset 0 0 0 8px rgba(255, 255, 255, 0.2);
+            transform-origin: bottom center;
+            animation: animateBowl 10s linear infinite;
+        }
+
+        @keyframes animateBowl {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(16deg); }
+            50% { transform: rotate(0deg); }
+            75% { transform: rotate(-16deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        /* 4. IL CORPO DEL LIQUIDO (Compensa a 18 gradi) */
+        .liquid {
+            position: absolute;
+            top: 50%;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            background: #41c1fb;
+            border-radius: 0 0 150px 150px;
+            transform-origin: top center;
+            animation: animateLiquid 10s linear infinite;
+        }
+
+        @keyframes animateLiquid {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(-18deg); }
+            50% { transform: rotate(0deg); }
+            75% { transform: rotate(18deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        /* 5. LA SUPERFICIE DEL LIQUIDO (Effetto 3D e Ombra) */
+        .liquid::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            width: 100%;
+            left: 0;
+            height: 20px;
+            background: #1fa4e0; /* Colore più scuro per profondità */
+            border-radius: 50%;
+            filter: drop-shadow(0 0 80px #41c1fb); /* Il bagliore al neon */
+            z-index: 5;
+        }
+
+        /* 6. LE BOLLICINE */
+        .bubbles {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 0 0 150px 150px;
+            overflow: hidden; /* Mantiene le bolle dentro il liquido */
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -20px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            animation: rise linear forwards;
+        }
+
+        @keyframes rise {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-150px); opacity: 0; }
+        }
+
+        /* 7. RESPONSIVE DESIGN (Il vero fix per i cellulari) */
+        @media (max-width: 600px) {
+            .bowl-wrapper {
+                /* Riduce tutto il blocco al 65% della dimensione originale! */
+                transform: scale(0.65); 
+            }
+        }
+    </style>
+
+
+
+
+
+
+
